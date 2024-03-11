@@ -937,12 +937,12 @@ static void workaround_snet_properties() {
     // Check whether this is a normal boot, and whether the bootloader is actually locked
     auto isNormalBoot = true; // no prop = normal boot
     // This runs before keys are set as props, so we need to process them ourselves.
-    ImportKernelCmdline([&](const std::string& key, const std::string& value) {
+    fs_mgr::ImportKernelCmdline([&](const std::string& key, const std::string& value) {
         if (key == ANDROIDBOOT_MODE && value != "normal") {
             isNormalBoot = false;
         }
     });
-    ImportBootconfig([&](const std::string& key, const std::string& value) {
+    fs_mgr::ImportBootconfig([&](const std::string& key, const std::string& value) {
         if (key == ANDROIDBOOT_MODE && value != "normal") {
             isNormalBoot = false;
         }
